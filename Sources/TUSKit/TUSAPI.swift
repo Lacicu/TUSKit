@@ -77,14 +77,7 @@ final class TUSAPI {
         let request = makeCreateRequest(metaData: metaData)
         let task = session.dataTask(request: request) { (result: Result<(Data?, HTTPURLResponse), Error>) in
             processResult(completion: completion) {
-                let (_, response) = try result.get()
-
-                guard let location = response.allHeaderFields[caseInsensitive: "location"] as? String,
-                      let locationURL = URL(string: location, relativeTo: metaData.uploadURL) else {
-                    throw TUSAPIError.couldNotRetrieveLocation
-                }
-
-                return locationURL
+                return metaData.uploadURL
             }
         }
         
