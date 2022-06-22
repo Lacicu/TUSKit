@@ -132,7 +132,7 @@ final class TUSAPI {
         /// Attach all headers from customHeader property
         let headers = defaultHeaders.merging(metaData.customHeaders ?? [:]) { _, new in new }
         
-        return makeRequest(url: metaData.uploadURL, method: .patch, headers: headers)
+        return makeRequest(url: metaData.uploadURL, method: .head, headers: headers)
     }
     
     /// Uploads data
